@@ -1,0 +1,237 @@
+.bb8 {
+  width: 400px;
+  height: 500px;
+  position: relative;
+  margin-top: 350px;
+  margin-left: auto;
+  margin-right: auto;
+  transform: scale(0.7);
+}
+
+.bb8Head {
+  width: 180px;
+  height: 100px;
+  border: 6px solid #000000;
+  border-radius: 200px 200px 0 0;
+  position: absolute;
+  transform: rotate(-29deg);
+  top: 35px;
+  left: 60px;
+  z-index: 2;
+  background-color: #e6e6e6;
+}
+
+.lens {
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  z-index: 3;
+  background-color: #002966;
+  border-radius: 50%;
+  left: 60px;
+  top: 20px;
+  border: 10px solid #000000;
+}
+
+
+.bb8Body {
+  width: 280px;
+  height: 280px;
+  background-color: #e6e6e6;
+  border: 6px solid #000000;
+  border-radius: 50%;
+  position: absolute;
+  overflow: hidden;
+  -webkit-animation: spin 1.5s linear infinite;
+  -moz-animation: spin 1.5s linear infinite;
+  -ms-animation: spin 1.5s linear infinite;
+  -o-animation: spin 1.5s linear infinite;
+  animation: spin 1.5s linear infinite;
+  top: 100px;
+  left: 100px;
+}
+
+.circle {
+  background-color: #FFA500;
+  width: 150px;
+  height: 150px;
+  border: 6px solid #000000;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.bodyCircle1 {
+  position: absolute;
+  top: 25%;
+  left: -20%;
+}
+
+.bodyCircle2 {
+  position: absolute;
+  top: -19%;
+  right: -8%;
+}
+
+.bodyCircle3 {
+  width: 260px;
+  height: 260px;
+  top: 70%;
+  left: 41%;
+  position: absolute;
+}
+
+.innerCircle1 {
+  width: 90px;
+  height: 90px;
+  background-color: #e6e6e6;
+  border-radius: 50%;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.innerCircle3 {
+  width: 175px;
+  height: 175px;
+  background-color: #e6e6e6;
+  border-radius: 50%;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.bodyDot {
+  background-color: #000000;
+  height: 25px;
+  width: 25px;
+  position: absolute;
+  border-radius: 50%;
+}
+
+.bodyDot1 {
+  top: 15%;
+  left: 35%;
+}
+
+.bodyDot2 {
+  top: 55%;
+  left: 55%;
+}
+
+.headDot {
+  position: absolute;
+  left: 145px;
+  top: 65px;
+  height: 15px;
+  width: 15px;
+}
+
+.bodyLine1 {
+  background-color: #000000;
+  height: 8px;
+  width: 77px;
+  transform: rotate(-32deg);
+  position: absolute;
+  top: 32%;
+  left: 32%;
+}
+
+.bodyLine2 {
+  background-color: #000000;
+  height: 8px;
+  width: 81px;
+  transform: rotate(35deg);
+  position: absolute;
+  top: 76%;
+  left: 28%;
+}
+
+.bodyLine3 {
+  background-color: #000000;
+  height: 8px;
+  width: 97px;
+  transform: rotate(92deg);
+  position: absolute;
+  top: 53%;
+  left: 61%;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(360deg)
+  }
+
+  ;
+
+  100% {
+    -webkit-transform: rotate(0deg)
+  }
+
+  ;
+}
+
+@-moz-keyframes spin {
+  0% {
+    -moz-transform: rotate(360deg)
+  }
+
+  ;
+
+  100% {
+    -moz-transform: rotate(0deg)
+  }
+
+  ;
+}
+
+@-ms-keyframes spin {
+  0% {
+    -ms-transform: rotate(360deg)
+  }
+
+  ;
+
+  100% {
+    -ms-transform: rotate(0deg)
+  }
+
+  ;
+}
+
+@-o-keyframes spin {
+  0% {
+    -o-transform: rotate(360deg)
+  }
+
+  ;
+
+  100% {
+    -o-transform: rotate(0deg)
+  }
+
+  ;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(360deg)
+  }
+
+  ;
+
+  100% {
+    transform: rotate(0deg)
+  }
+
+  ;
+}
