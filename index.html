@@ -5,9 +5,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Darth Vader Login Page</title>
+  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="bb8.css">
   <link rel="stylesheet" href="darthVader.css">
   <link rel="stylesheet" href="lightSword.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sigmar&display=swap" rel="stylesheet">
 
 </head>
 
@@ -15,8 +20,7 @@
   <div class="container">
     <div class="darth">
       <div class="helmet">
-        <div class="dome">
-        </div>
+        <div class="dome"></div>
         <div class="hood">
           <div class="left"></div>
           <div class="right"></div>
@@ -49,13 +53,18 @@
       </div>
     </div>
 
+
+
+
     <div class="login-container">
-      <form class="login-form">
-        <input type="text" placeholder="Username" required>
-        <input type="password" placeholder="Password" required>
+      <form class="login-form" id="login-form">
+        <input type="text" id="username" placeholder="USERNAME" required>
+        <input type="password" id="password" placeholder="PASSWORD" required>
         <button type="submit" class="login-btn">LOGIN TO THE DARK SIDE</button>
       </form>
     </div>
+
+    <div id="clock"></div>
 
     <div class="bb8">
       <div class="bb8Head">
@@ -86,6 +95,7 @@
     <div class="lightsaber lightsaber-4"></div>
   </div>
 
+  <script src="scripts.js"></script>
 
 </body>
 
