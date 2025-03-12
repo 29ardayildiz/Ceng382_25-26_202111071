@@ -2,17 +2,25 @@
 let loginData = [];
 
 document.getElementById('login-form').addEventListener('submit', function(event) {
-  event.preventDefault();
+    event.preventDefault();
 
-  let username = document.getElementById('username').value;
-  let password = document.getElementById('password').value;
+    let username = document.getElementById('username').value;
+    let password = document.getElementById('password').value;
 
-  loginData.push({ username: username, password: password });
+    loginData.push({ username: username, password: password });
 
-  console.log(loginData);
+    console.log(loginData);
 
-  document.getElementById('username').value = '';
-  document.getElementById('password').value = '';
+    const defaultUsername = 'admin';
+    const defaultPassword = 'admin';
+
+// Kullanıcı adı ve şifre doğruysa başak bir html dosyasına yönlendirme nasıl yapılır
+    if (username === defaultUsername && password === defaultPassword) {
+        window.location.href = 'table.html';
+    } else {
+        alert("Invalid username or password!");
+    }
+  
 });
 
 
@@ -47,3 +55,4 @@ document.addEventListener('keydown', function(event) {
         formsVisible = !formsVisible; 
     }
 });
+
