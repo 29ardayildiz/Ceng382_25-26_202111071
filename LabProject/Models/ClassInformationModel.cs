@@ -13,7 +13,6 @@ public class ClassInformationModel
 
     public string Description { get; set; }
 
-
     public static List<ClassInformationModel> Classes { get; } = new();
     private static int _currentId = 0;
 
