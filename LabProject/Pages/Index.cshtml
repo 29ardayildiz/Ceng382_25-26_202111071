@@ -15,101 +15,103 @@
         }
     </style>
     <div class="container mt-4">
-        <div class="row">
-            <div class="col-md-6 offset-md-6 mb-3">
-                <!-- filtreleme için debounced input nasıl yapılır-->
-                <form method="get" id="filterForm">
-                    <div class="input-group">
-                        <input type="text" name="FilterClassName" value="@Model.FilterClassName" class="form-control" placeholder="Filter by Class Name" oninput="debouncedFilter()" />
-                    </div>
-                </form>
-            </div>
-            <div class="row">
-            <div class="col-md-6">
-                <form method="post">
-                    <input type="hidden" asp-for="EditId" />
+    <div class="row">
+        <div class="col-md-6">
+            
 
-                    <div class="form-group mb-3">
-                        <label asp-for="NewClass.ClassName">Class Name</label>
-                        <input asp-for="NewClass.ClassName" class="form-control" />
-                        <span asp-validation-for="NewClass.ClassName" class="text-danger"></span>
-                    </div>
+            <form method="post">
+                <input type="hidden" asp-for="EditId" />
 
-                    <div class="form-group mb-3">
-                        <label asp-for="NewClass.StudentCount">Student Count</label>
-                        <input asp-for="NewClass.StudentCount" class="form-control" />
-                        <span asp-validation-for="NewClass.StudentCount" class="text-danger"></span>
-                    </div>
+                <div class="form-group mb-3">
+                    <label asp-for="NewClass.ClassName">Class Name</label>
+                    <input asp-for="NewClass.ClassName" class="form-control" />
+                    <span asp-validation-for="NewClass.ClassName" class="text-danger"></span>
+                </div>
 
-                    <div class="form-group mb-3">
-                        <label asp-for="NewClass.Description">Description</label>
-                        <textarea asp-for="NewClass.Description" class="form-control"></textarea>
-                    </div>
-                    <div class="mt-3">
-                        @if (Model.EditId == 0)
-                        {
-                            <button type="submit" asp-page-handler="Add" class="btn btn-primary">
-                                <i class="bi bi-plus-circle me-1"></i>Add Class
-                            </button>
-                        }
-                        else
-                        {
-                            <button type="submit" asp-page-handler="Edit" asp-route-id="@Model.EditId" class="btn btn-warning">
-                                <i class="bi bi-pencil-square me-1"></i>Update
-                            </button>
-                            <a href="/" class="btn btn-secondary">
-                                <i class="bi bi-x-circle me-1"></i>Cancel
-                            </a>
-                        }
-                    </div>
-                </form>
-            </div>
+                <div class="form-group mb-3">
+                    <label asp-for="NewClass.StudentCount">Student Count</label>
+                    <input asp-for="NewClass.StudentCount" class="form-control" />
+                    <span asp-validation-for="NewClass.StudentCount" class="text-danger"></span>
+                </div>
 
-            <div class="col-md-6">
-                <table class="table table-striped">
-                    <thead>
+                <div class="form-group mb-3">
+                    <label asp-for="NewClass.Description">Description</label>
+                    <textarea asp-for="NewClass.Description" class="form-control"></textarea>
+                </div>
+
+                <div class="mt-3">
+                    @if (Model.EditId == 0)
+                    {
+                        <button type="submit" asp-page-handler="Add" class="btn btn-primary">
+                            <i class="bi bi-plus-circle me-1"></i>Add Class
+                        </button>
+                    }
+                    else
+                    {
+                        <button type="submit" asp-page-handler="Edit" asp-route-id="@Model.EditId" class="btn btn-warning">
+                            <i class="bi bi-pencil-square me-1"></i>Update
+                        </button>
+                        <a href="/" class="btn btn-secondary">
+                            <i class="bi bi-x-circle me-1"></i>Cancel
+                        </a>
+                    }
+                </div>
+            </form>
+        </div>
+
+        <div class="col-md-6">
+            <!-- filtreleme için debounced input nasıl yapılır-->
+            <form method="get" id="filterForm" class="mb-3">
+                <div class="form-group">
+                    <label for="FilterClassName">Filter by Class Name</label>
+                    <input type="text" name="FilterClassName" value="@Model.FilterClassName" class="form-control" placeholder="Filter by Class Name" oninput="debouncedFilter()" />
+                </div>
+            </form>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Class Name</th>
+                        <th>Students</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.FilteredClasses)
+                    {
                         <tr>
-                            <th>Class Name</th>
-                            <th>Students</th>
-                            <th>Description</th>
-                            <th>Actions</th>
+                            <td>@item.ClassName</td>
+                            <td>@item.StudentCount</td>
+                            <td>@item.Description</td>
+                            <td>
+                                <form method="post" class="d-inline">
+                                    <a asp-page="/Index" asp-route-editId="@item.Id" class="btn btn-sm btn-info">
+                                        <i class="bi bi-pencil me-1"></i>Edit
+                                    </a>
+                                    <button type="submit" asp-page-handler="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">
+                                        <i class="bi bi-trash me-1"></i>Delete
+                                    </button>
+                                </form>
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model.FilteredClasses)
-                        {
-                            <tr>
-                                <td>@item.ClassName</td>
-                                <td>@item.StudentCount</td>
-                                <td>@item.Description</td>
-                                <td>
-                                    <form method="post" class="d-inline">
-                                        <a asp-page="/Index" asp-route-editId="@item.Id" class="btn btn-sm btn-info">
-                                            <i class="bi bi-pencil me-1"></i>Edit
-                                        </a>
-                                        <button type="submit" asp-page-handler="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">
-                                            <i class="bi bi-trash me-1"></i>Delete
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
+                    }
+                </tbody>
+            </table>
 
-                <nav>
-                    <ul class="pagination">
-                        @for (int i = 1; i <= Model.TotalPages; i++)
-                        {
-                            <li class="page-item @(i == Model.PageNumber ? "active" : "")">
-                                <a class="page-link" asp-page="/Index" asp-route-PageNumber="@i" asp-route-FilterClassName="@Model.FilterClassName">@i</a>
-                            </li>
-                        }
-                    </ul>
-                </nav>
-            </div>
+            <nav>
+                <ul class="pagination">
+                    @for (int i = 1; i <= Model.TotalPages; i++)
+                    {
+                        <li class="page-item @(i == Model.PageNumber ? "active" : "")">
+                            <a class="page-link" asp-page="/Index" asp-route-PageNumber="@i" asp-route-FilterClassName="@Model.FilterClassName">@i</a>
+                        </li>
+                    }
+                </ul>
+            </nav>
         </div>
     </div>
+</div>
+
 
     @section Scripts {
         <partial name="_ValidationScriptsPartial" />
