@@ -94,4 +94,52 @@ public class IndexModel : PageModel
         }
         return RedirectToPage();
     }
+
+    
+//utils.cs ile dışa aktarmayı yap
+//export butonu çalışmıyor. json boş. [] bu şekilde geliyor.
+public IActionResult OnPostExport(bool filtered = false, string? selectedColumns = null, string? filterClassName = null)
+{
+    var query = ClassInformationModel.Classes.AsQueryable();
+
+    if (filtered && !string.IsNullOrEmpty(filterClassName))
+    {
+        query = query.Where(c => c.ClassName.Contains(filterClassName, StringComparison.OrdinalIgnoreCase));
+    }
+
+    query = query.Skip((PageNumber - 1) * PageSize).Take(PageSize);
+
+    var data = query.Select(c => new ClassInformationTable
+    {
+        Id = c.Id,
+        ClassName = c.ClassName,
+        StudentCount = c.StudentCount,
+        Description = c.Description
+    }).ToList();
+
+    var selected = selectedColumns?.Split(',').Where(s => !string.IsNullOrWhiteSpace(s)).Select(s => s.Trim()).ToList();
+
+    var exportData = data.Select(item =>
+    {
+        var dict = new Dictionary<string, object>();
+        if (selected?.Contains("ClassName") == true) dict["ClassName"] = item.ClassName;
+        if (selected?.Contains("StudentCount") == true) dict["StudentCount"] = item.StudentCount;
+        if (selected?.Contains("Description") == true) dict["Description"] = item.Description;
+        return dict;
+    }).Where(d => d.Count > 0).ToList();
+    
+    /*var exportData = data.Select(item =>
+    {
+        var dict = new Dictionary<string, object>();
+        if (selected?.Contains("ClassName") == true) dict["ClassName"] = item.ClassName;
+        if (selected?.Contains("StudentCount") == true) dict["StudentCount"] = item.StudentCount;
+        if (selected?.Contains("Description") == true) dict["Description"] = item.Description;
+        return dict;
+    }).Where(d => d.Count > 0).ToList();   bu şekilde oluşturulann JSON formatında veriyi nasıl export ederim
+    */
+    
+    var json = Utils.Instance.ExportToJson(exportData);
+    return File(System.Text.Encoding.UTF8.GetBytes(json), "application/json", "export.json");
 }
+
+} 
