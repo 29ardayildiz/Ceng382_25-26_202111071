@@ -1,3 +1,6 @@
+//Bana users.json dosyasında bulunan [{"Username": "admin","Password": "1234","Role": "Admin","IsActive": true,"CreatedAt": "2023-10-01T00:00:00"}] şekilindeki json dosyasını kullanarak login işlemi yapacağım .net de çalışacak ve ekte gönderdiğim html kodu ile uyumlu çalışacak c# kodunu yaz
+//Session ve cookie işlemlerini yapacak şekilde düzenle
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Text.Json;
