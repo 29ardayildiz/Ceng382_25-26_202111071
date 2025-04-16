@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ZzTRt7a6UE6BNlsZRSuWHJbEZjNx5utQZnedMLSNjfE=",
+  "Hash": "36omOxte0fTcO4CYxzF7umEWjNIMgLm5QYiXHqHQQm4=",
   "Source": "LabProject",
   "BasePath": "_content/LabProject",
   "Mode": "Default",
@@ -72,6 +72,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "C:\\Arda\\Ceng382_25-26_202111071\\LabProject\\wwwroot\\data\\users.json",
+      "SourceId": "LabProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Arda\\Ceng382_25-26_202111071\\LabProject\\wwwroot\\",
+      "BasePath": "_content/LabProject",
+      "RelativePath": "data/users.json",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\data\\users.json"
     },
     {
       "Identity": "C:\\Arda\\Ceng382_25-26_202111071\\LabProject\\wwwroot\\favicon.ico",

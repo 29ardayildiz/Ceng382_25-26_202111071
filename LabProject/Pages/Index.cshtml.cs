@@ -1,5 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.ComponentModel.DataAnnotations;
+using System.Text;
+using System.Text.Json;
 
 public class IndexModel : PageModel
 {
@@ -20,8 +23,13 @@ public class IndexModel : PageModel
 
     public List<ClassInformationTable> FilteredClasses { get; set; } = new();
 
-    public void OnGet()
+    public IActionResult  OnGet()
     {
+         if (!IsUserAuthenticated())
+        {
+            return RedirectToPage("/Login");
+        }
+        
         if (!ClassInformationModel.Classes.Any())
         {
             for (int i = 1; i <= 100; i++)
@@ -62,7 +70,18 @@ public class IndexModel : PageModel
                 NewClass = existingClass;
             }
         }
+
+        return Page();
     }
+
+    private bool IsUserAuthenticated()
+    {
+        var sessionToken = HttpContext.Session.GetString("token");
+        var cookieToken = Request.Cookies["AuthToken"];
+        return sessionToken == cookieToken && !string.IsNullOrEmpty(sessionToken);
+    }
+
+    
 
     public IActionResult OnPostAdd()
     {
@@ -141,5 +160,6 @@ public IActionResult OnPostExport(bool filtered = false, string? selectedColumns
     var json = Utils.Instance.ExportToJson(exportData);
     return File(System.Text.Encoding.UTF8.GetBytes(json), "application/json", "export.json");
 }
+
 
 } 

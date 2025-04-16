@@ -1,5 +1,7 @@
 ﻿@page
 @model IndexModel
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
@@ -58,30 +60,11 @@
         transform: scale(1.05);
     }
 
-    .btn-primary {
-        background-color: #0d6efd;
-        border: none;
-    }
-
-    .btn-warning {
-        background-color: #ffc107;
-        border: none;
-    }
-
-    .btn-success {
-        background-color: #28a745;
-        border: none;
-    }
-
-    .btn-info {
-        background-color: #17a2b8;
-        border: none;
-    }
-
-    .btn-danger {
-        background-color: #dc3545;
-        border: none;
-    }
+    .btn-primary { background-color: #0d6efd; border: none; }
+    .btn-warning { background-color: #ffc107; border: none; }
+    .btn-success { background-color: #28a745; border: none; }
+    .btn-info { background-color: #17a2b8; border: none; }
+    .btn-danger { background-color: #dc3545; border: none; }
 
     .pagination .page-link {
         background-color: #f8f9fa;
@@ -129,6 +112,16 @@
     }
 </style>
 
+<!-- Session Kullanıcı Adı Göstergesi -->
+<div class="container mt-2">
+    <div class="d-flex justify-content-end">
+        <span class="badge bg-secondary">
+            <i class="bi bi-person-circle me-1"></i>
+            @HttpContextAccessor.HttpContext.Session.GetString("username")
+        </span>
+    </div>
+</div>
+
 <div class="container mt-4">
     <div class="row">
 
@@ -163,8 +156,7 @@
                         }
                         else
                         {
-                            <button type="submit" asp-page-handler="Edit" asp-route-id="@Model.EditId"
-                                class="btn btn-warning">
+                            <button type="submit" asp-page-handler="Edit" asp-route-id="@Model.EditId" class="btn btn-warning">
                                 <i class="bi bi-pencil-square me-1"></i>Update
                             </button>
                             <a href="/" class="btn btn-secondary">
@@ -178,7 +170,7 @@
 
         <div class="col-md-6">
 
-           <!-- filtreleme için debounced input nasıl yapılır-->
+            <!-- Debounced Filter Input -->
             <div class="filter-export-container">
                 <form method="get" id="filterForm" class="mb-3">
                     <div class="form-group">
@@ -188,9 +180,9 @@
                     </div>
                 </form>
             </div>
-            <div class="filter-export-container">
 
-            <!-- class name, student count, description checkboxları olan ve export json butonu olan bir form oluştur-->
+            <!-- Export Form -->
+            <div class="filter-export-container">
                 <form method="post" asp-page-handler="Export" onsubmit="return collectColumns()" id="exportForm">
                     <input type="hidden" name="filtered" value="true" />
                     <input type="hidden" name="selectedColumns" id="selectedColumns" />
@@ -216,7 +208,7 @@
                 </form>
             </div>
 
-
+            <!-- Table -->
             <div class="right-side-container">
                 <table class="table table-striped">
                     <thead>
