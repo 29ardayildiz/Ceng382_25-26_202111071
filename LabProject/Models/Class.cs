@@ -1,0 +1,23 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace LabProject.Models
+{
+    [Table("Classes")] 
+    public class Class
+    {
+        [Key]
+        public int Id { get; set; }
+
+        [Required]
+        public string Name { get; set; }
+
+        [Required]
+        public int PersonCount { get; set; }
+
+        public string Description { get; set; }
+
+        [Required]
+        public bool IsActive { get; set; } = true;
+    }
+}
