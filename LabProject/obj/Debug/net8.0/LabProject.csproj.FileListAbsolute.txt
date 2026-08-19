@@ -275,3 +275,6 @@ C:\Arda\Ceng382_25-26_202111071\LabProject\bin\Debug\net8.0\runtimes\win\lib\net
 C:\Arda\Ceng382_25-26_202111071\LabProject\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
 C:\Arda\Ceng382_25-26_202111071\LabProject\obj\Debug\net8.0\LabProject.csproj.AssemblyReference.cache
 C:\Arda\Ceng382_25-26_202111071\LabProject\obj\Debug\net8.0\LabProject.csproj.Up2Date
+C:\Arda\Ceng382_25-26_202111071\LabProject\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Arda\Ceng382_25-26_202111071\LabProject\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.UI.dll
+C:\Arda\Ceng382_25-26_202111071\LabProject\obj\Debug\net8.0\LabProject.MvcApplicationPartsAssemblyInfo.cs

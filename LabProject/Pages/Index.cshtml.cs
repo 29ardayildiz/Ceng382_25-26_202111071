@@ -6,7 +6,11 @@ using System.Text;
 using System.Text.Json;
 using LabProject.Data;     
 using LabProject.Models;
+using Microsoft.AspNetCore.Authorization;
 
+namespace LabProject.Pages
+{
+[Authorize] 
 public class IndexModel : PageModel
 {
     private readonly SchoolDbContext _context;
@@ -174,4 +178,5 @@ public class IndexModel : PageModel
         var json = Utils.Instance.ExportToJson(exportData);
         return File(Encoding.UTF8.GetBytes(json), "application/json", "export.json");
     }
+}
 }
